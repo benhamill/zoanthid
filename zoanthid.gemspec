@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Zoanthid::VERSION
   spec.authors       = ["Ben Hamill"]
   spec.email         = ["git-commits@benhamill.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Zoanthid is a library that interfaces with Rails and RSpec to help you write expressive tests for your HAL API.}
+  spec.summary       = %q{Kinda like Capybara for your HAL APIs.}
+  spec.homepage      = "https://github.com/benhamill/zoanthid#readme"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "pry"
 end
