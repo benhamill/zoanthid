@@ -1,5 +1,13 @@
 require "zoanthid/version"
+require "zoanthid/dsl"
+require "zoanthid/example_group"
 
 module Zoanthid
-  # Your code goes here...
+  def self.app
+    @app
+  end
+
+  def self.app=(app)
+    @app = app
+  end
 end

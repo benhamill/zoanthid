@@ -22,6 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "sinatra"
 
   spec.add_dependency "cetacean", "~> 1.0"
+  spec.add_dependency "rack-test", "~> 0.6.2"
 end
