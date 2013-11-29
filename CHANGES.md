@@ -1,6 +1,6 @@
 # Changes
 
-## Unreleased
+## 0.1.1
 
 * Remove erroneously committed file. - Ben Hamill
 
