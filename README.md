@@ -18,12 +18,9 @@ Require Zoanthid in your spec_helper.rb, then if you put spec files in
 
 ``` ruby
 describe "listing posts" do
-  let(:document) do
-    get root.get_uri(:posts).expand
-  end
-
-  let(:root) do
-    get '/'
+  before do
+    get :root
+    get expand_uri(:posts)
   end
 
   it "shows the total" do
@@ -31,7 +28,11 @@ describe "listing posts" do
   end
 
   it "has a next link" do
-    expect(document.get_uri(:next)).to eq('/posts?page=2')
+    expect(expand_uri(:next)).to eq('/posts?page=2')
+  end
+
+  it "can jump to any page" do
+    expect(expand_uri(:jump_to_page, page: 99)).to eq('/posts?page=99')
   end
 
   it "embeds the posts" do
@@ -42,11 +43,8 @@ end
 
 ## The Future?
 
-Possibly in the future, it'll work more like Capybara in that doing a get or
-following a link, etc. would update a `document` variable, so you could do all
-your API navigation in a `before` block. Also, there might be nice matchers
-later. I plan to add features slowly, though, only in the face of an actual
-need.
+Possibly in the future, there might be nice matchers. I plan to add features
+slowly, though, only in the face of an actual need.
 
 ## Contributing
 
