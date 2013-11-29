@@ -11,16 +11,25 @@ class TestApp < Sinatra::Base
   end
 
   after do
-    if body == []
-      body ''
-    elsif content_type == 'application/hal+json'
+    if content_type == 'application/hal+json'
       body JSON.dump(body)
     end
   end
 
   get '/' do
     {
-      _links: { self: { href: '/' } }
+      _links: {
+        self: { href: '/' },
+        posts: { href: '/posts{?page}', templated: true }
+      },
+      get_root: 'get root'
+    }
+  end
+
+  get '/posts' do
+    {
+      _links: { self: { href: '/posts' } },
+      posts: 'posts'
     }
   end
 end

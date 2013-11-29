@@ -2,20 +2,27 @@ require 'cetacean'
 require 'faraday'
 
 module Zoanthid::DSL
-  def app
-    Zoanthid.app
+  def document
+    browser.document
   end
 
-  def client
-    @client ||= Faraday.new do |client|
-      client.adapter :rack, app
-      client.headers['Accept'] = 'application/hal+json'
-    end
+  def browser
+    @browser ||= Zoanthid::Browser.new
   end
 
-  %w(get post put delete head patch).each do |verb|
+  def expand_link(rel, expansions={})
+    document.get_uri(rel).expand(expansions)
+  end
+
+  def clear_history!
+    browser.clear_history!
+  end
+
+  Zoanthid::Browser::REQUEST_METHODS.each do |verb|
     define_method verb do |*args, &block|
-      Cetacean.new(client.send verb, *args, &block)
+      args[0] = '/' if args.first == :root
+
+      browser.send verb, *args, &block
     end
   end
 end

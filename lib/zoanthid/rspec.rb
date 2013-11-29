@@ -11,4 +11,10 @@ RSpec.configure do |config|
   )
 
   config.include Zoanthid::DSL, type: :api
+
+  config.after do
+    if self.class.include?(Zoanthid::DSL)
+      clear_history!
+    end
+  end
 end

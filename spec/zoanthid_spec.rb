@@ -4,13 +4,35 @@ require 'zoanthid'
 describe Zoanthid, type: 'api' do
   before do
     Zoanthid.app = TestApp
+
+    get :root
   end
 
-  let(:document) do
-    get '/'
+  it "handles GETs" do
+    expect(document['get_root']).to eq('get root')
   end
 
-  it "gets the right document" do
-    expect(document.get_uri(:self)).to eq('/')
+  it "can extract URIs" do
+    expect(expand_link(:posts)).to eq('/posts')
+  end
+
+  it "can expand URIs" do
+    expect(expand_link(:posts, page: 2)).to eq('/posts?page=2')
+  end
+
+  context "following a rel" do
+    before do
+      get expand_link(:posts)
+    end
+
+    it "ends up on the right document" do
+      expect(document['posts']).to eq('posts')
+    end
+  end
+
+  context "in a different context" do
+    it "forgets the document from another context" do
+      expect(document['get_root']).to eq('get root')
+    end
   end
 end

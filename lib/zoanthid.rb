@@ -1,4 +1,5 @@
 require "zoanthid/version"
+require "zoanthid/browser"
 require "zoanthid/dsl"
 require "zoanthid/example_group"
 
