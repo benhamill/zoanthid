@@ -1,5 +1,9 @@
 # Changes
 
+## Unreleased
+
+* Remove erroneously committed file. - Ben Hamill
+
 ## 0.1.0
 
-* Initial run at an API.
+* Initial run at an API. - Ben Hamill
