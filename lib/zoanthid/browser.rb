@@ -11,7 +11,7 @@ class Zoanthid::Browser
 
   REQUEST_METHODS.each do |verb|
     define_method verb do |*args, &block|
-      history << Cetacean.new(client.send verb, *args, &block)
+      history << Cetacean.new(client.send(verb, *args, &block))
     end
   end
 
