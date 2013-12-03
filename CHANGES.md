@@ -1,6 +1,6 @@
 # Changes
 
-## Unreleased
+## 0.1.2
 
 * Clarify `README`. - Ben Hamill
 * Fix bug in `Zoanthid::ExampleGroup` that caused it to not properly set the
