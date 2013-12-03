@@ -13,14 +13,22 @@ deal with the responses. It's not configurable at this juncture.
 
 This will most likely change, but here's the idea so far:
 
-Require Zoanthid in your spec_helper.rb, then if you put spec files in
-`spec/api/`, or label them with `type: :api` and you'll get some helpers.
+Your `spec/spec_helper.rb` should have something like this:
+
+``` ruby
+require 'zoanthid/rspec'
+
+Zoanthid.app = Rails.application
+```
+
+Then if you put spec files in `spec/api/`, or label them with `type: :api` and
+you'll get some helpers like this:
 
 ``` ruby
 describe "listing posts" do
   before do
     get :root
-    get expand_uri(:posts)
+    get expand_link(:posts)
   end
 
   it "shows the total" do

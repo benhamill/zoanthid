@@ -6,7 +6,7 @@ RSpec.configure do |config|
     Zoanthid::ExampleGroup,
     type: :api,
     example_group: ->(example_group, metadata) do
-      metadata[:type].nil? && config.escaped_path(%w[spec api]) =~ example_group[:file_path]
+      (metadata[:type].nil? || metadata[:type] == :request) && config.escaped_path(%w[spec api]) =~ example_group[:file_path]
     end
   )
 
